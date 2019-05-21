@@ -10,11 +10,11 @@ class WebClient
      * @access public
      *
      * @param string $url
-     * @param string $autorization
+     * @param string $authorization
      *
      * @return string $response
      */
-    public static function get(string $url, string $autorization = null): string
+    public static function get(string $url, string $authorization = null): string
     {
         $client = new Client(['verify' => false]);
         $response = $client->request(
@@ -23,7 +23,7 @@ class WebClient
             [
                 'headers' => [
                     'User-Agent' => 'ANY.RUN API Client',
-                    'Authorization' => $autorization,
+                    'Authorization' => $authorization,
                 ],
             ]
         );
@@ -41,11 +41,11 @@ class WebClient
      *
      * @param string $url
      * @param array $data
-     * @param string $autorization
+     * @param string $authorization
      *
      * @return string $response
      */
-    public static function post(string $url, array $data = null, string $autorization = null): string
+    public static function post(string $url, array $data = null, string $authorization = null): string
     {
         $client = new Client(['verify' => false]);
         $response = $client->request(
@@ -54,7 +54,7 @@ class WebClient
             [
                 'headers' => [
                     'User-Agent' => 'ANY.RUN API Client',
-                    'Authorization' => $autorization,
+                    'Authorization' => $authorization,
                 ],
                 'form_params' => $data,
             ]
@@ -74,11 +74,11 @@ class WebClient
      * @param string $url
      * @param string $file_path
      * @param array $options
-     * @param string $autorization
+     * @param string $authorization
      *
      * @return string $response
      */
-    public static function post_file(string $url, string $file_path, array $options, string $autorization): string
+    public static function post_file(string $url, string $file_path, array $options, string $authorization): string
     {
         $client = new Client(['verify' => false]);
         $response = $client->request(
@@ -87,7 +87,7 @@ class WebClient
             [
                 'headers' => [
                     'User-Agent' => 'ANY.RUN API Client',
-                    'Authorization' => $autorization,
+                    'Authorization' => $authorization,
                 ],
                 'multipart' => [
                     [
