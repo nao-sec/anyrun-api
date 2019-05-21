@@ -15,7 +15,7 @@ class Client
     {
         if (count($auth_element) === 1) {
             $this->authorization = 'API-Key ' . $auth_element[0];
-        } else if (cout($auth_element) === 2) {
+        } else if (count($auth_element) === 2) {
             $this->authorization = 'Basic ' . base64_encode($auth_element[0] . ':' . $auth_element[1]);
         }
 
@@ -65,11 +65,11 @@ class Client
             throw new \Exception('Invalid argument: "task_id" is UUID');
         }
 
-        $url = $this->base_url . "/analysis/${task_id}";
+        $url = $this->base_url . "/analysis/?${task_id}";
         $report = WebClient::get($url, $this->authorization);
 
         $report = json_decode($report, true);
-        if (!isset($report['data']['analysis'])) {
+        if (!isset($report['data']['tasks'])) {
             if (!isset($report['data']['status'])) {
                 throw new \Exception('Error: ' . json_encode($report));
             } else {
@@ -77,7 +77,7 @@ class Client
             }
         }
 
-        return $report['data']['analysis'];
+        return $report['data']['tasks'];
     }
 
     /**
